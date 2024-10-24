@@ -18,6 +18,8 @@ def run():
     llm = ChatGroq(model='llama3-70b-8192', groq_api_key=groq_api_key)
     embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
     
+    st.subheader("Users can upload their resumes for the job recommendations and identifying best matching roles.")
+    
     resume=st.file_uploader("Upload your resume",type=['pdf','docx'])
     if resume:
         file_name=resume.name
@@ -49,18 +51,16 @@ def run():
         {resume}
         Compare it with the job description:
         {job_description}
-        Identify all the unique job roles and calculate the matching score out of 10.
-        Then, Provide us the following in descending order with respect to the matching score:
-        1. Provide the job role/title.
-        2. Provide analytics to show why a candidate is a good fit for that particular job, highlighting:
-            - Rank among all other job descriptions.
+        You are an expert in matching resume with the job descriptions and sorting your response according to the matching score of each job description.
+        You can provide the following information about each job role/description very concisely:
+        1. job role/title.
+        2. analytics to show why a candidate is a good fit for that particular job, highlighting:
+            - Rank among all other job descriptions(example: if there are total 3 jobs in the response at the end of the one job analytics, then you rank them from 1 to 3).
             - Skill match percentage.
             - how the candidate's experience aligns with the job's requirements.
             - Are the degree and certifications relevant to the job.
             - Tools and technologies mentioned in both the resume and job description.
             - matching score out of 10.
-        Note: Provide very concise and onto the point response.
-        DONT REPEAT ANY JOB DESCRIPTIONS WHICH ARE ALREADY PRESENT IN THE RESPONSE.
         """
         prompt=PromptTemplate(input_variables=["resume","job_description"],template=prompt_template)
         chain=LLMChain(llm=llm,prompt=prompt)

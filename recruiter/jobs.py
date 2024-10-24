@@ -19,6 +19,7 @@ def run():
     llm=ChatGroq(model='llama3-70b-8192',groq_api_key=groq_api_key)
     embeddings=HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
     
+    st.subheader("Here you can upload multiple job descriptions in formats like TEXT or JSON")
     job_descriptions=st.file_uploader("Upload your job description",accept_multiple_files=True,type=['txt','json'])
     if job_descriptions:
         documents=[]
@@ -49,4 +50,5 @@ def run():
         storage_directory='D:\Programming\Data Science\Gen AI\Individual_Projects\Job_Matching_and_Candidate_Analysis_System\chromadb'
     ## Creating chromadb vector database
         vectorstore=Chroma.from_documents(documents=splits,embedding=embeddings,persist_directory=storage_directory)
+        st.success("Documents uploaded and processed successfully!")
         return vectorstore

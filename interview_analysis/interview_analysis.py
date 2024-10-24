@@ -12,16 +12,6 @@ from langchain.chains import LLMChain
 from langchain.prompts import PromptTemplate
 from moviepy.editor import VideoFileClip
 
-st.set_page_config(page_title="Interview Analysis",page_icon="💼")
-
-st.header("Interview Analysis")
-st.subheader("Uploade the interview video to recieve a detailed summary of the candidate's responses.")
-
-os.environ["GROQ_API_KEY"] = os.getenv("GROQ_API_KEY")
-groq_api_key = os.getenv('GROQ_API_KEY')
-model=whisper.load_model("base")
-llm=ChatGroq(model="llama3-70b-8192",groq_api_key=groq_api_key)
-
 def extract_audio(video_path, audio_path):
     video = VideoFileClip(video_path)
     audio = video.audio
@@ -29,9 +19,19 @@ def extract_audio(video_path, audio_path):
     video.close()
     
 def run():
+
+    st.subheader("Upload the interview video to recieve a detailed summary of the candidate's responses.")
+
+    os.environ["GROQ_API_KEY"] = os.getenv("GROQ_API_KEY")
+    groq_api_key = os.getenv('GROQ_API_KEY')
+    model=whisper.load_model("base")
+    llm=ChatGroq(model="llama3-70b-8192",groq_api_key=groq_api_key)
+    
     interview=st.file_uploader("Upload Interview Video",type=["mov","mp4","avi"])
 
     if interview:
+        st.video(interview)
+        st.success("Video Uploaded Successfully!")
         file_name=interview.name
         temp_vdo=f"./{file_name}"
         temp_ado=r"D:\Programming\Data Science\Gen AI\Individual_Projects\Job_Matching_and_Candidate_Analysis_System\interview_analysis\audio.wav"
