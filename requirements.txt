@@ -17,4 +17,4 @@ docx2txt
 torch
 openai-whisper
 ffmpeg-python
-sqlite3==3.35.0
+sqlite3
