@@ -1,6 +1,6 @@
 import os
 import streamlit as st
-import recruiter.jobs as jobs
+import Recruiter.jobs as jobs
 import User.user as user
 import interview_analysis.interview_analysis as analysis
 
