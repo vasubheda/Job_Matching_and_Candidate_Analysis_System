@@ -54,7 +54,7 @@ def run():
         splits=text_splitter.split_documents(documents)
         
     ## Specifying the directory for ChromaDB storage (our persistent vector database)
-        storage_directory='D:\Programming\Data Science\Gen AI\Individual_Projects\Job_Matching_and_Candidate_Analysis_System\chromadb'
+        storage_directory='chromadb'
         
     ## Creating chromadb vector database
         vectorstore=Chroma.from_documents(documents=splits,embedding=embeddings,persist_directory=storage_directory)

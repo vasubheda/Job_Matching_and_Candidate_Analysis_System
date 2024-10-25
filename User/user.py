@@ -44,8 +44,8 @@ def run():
         docs=loader.load()
         text=docs[0].page_content
         
-        # Specifying the path of our stored vectors
-        storage_directory='D:\Programming\Data Science\Gen AI\Individual_Projects\Job_Matching_and_Candidate_Analysis_System\chromadb'
+        # Specifying the path of our stored vectors - specify your own path
+        storage_directory='chromadb'
         
         # Initializing the Chroma Vector Store
         vectorstore=Chroma(persist_directory=storage_directory,embedding_function=embeddings)
