@@ -16,5 +16,3 @@ langchain_chroma
 docx2txt
 torch
 openai-whisper
-# ffmpeg-python
-sqlite3
