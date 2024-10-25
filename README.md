@@ -2,7 +2,7 @@ JOB MATCHING AND CANDIDATE ANALYSIS SYSTEM
 
 The project focuses on job matching and interview analysis designed to automate resume-job matching and analyzing interview videos. This project uses NLP,LLMs,RAG and vector databases.
 
-Features:
+Main Features:
 1. Job Matching
 2. Interview Analysis
 
