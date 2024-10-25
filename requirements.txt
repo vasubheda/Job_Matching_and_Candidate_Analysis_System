@@ -16,3 +16,4 @@ langchain_chroma
 docx2txt
 torch
 openai-whisper
+protobuf==3.20.*
