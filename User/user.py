@@ -61,7 +61,7 @@ def run():
             {resume}
             Compare it with the job description:
             {job_description}
-            You are an expert in matching resume with the job descriptions. You can provide response by sorting each job rank-wise
+            You are an expert in matching resume with the job descriptions. You can provide response by SORTING each job RANK-WISE
             You can provide the following information about each job role/description very concisely:
             1. job role/title.
             2. analytics to show why a candidate is a good fit for that particular job, highlighting:
