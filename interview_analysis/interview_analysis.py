@@ -2,8 +2,9 @@ import streamlit as st
 import os
 
 ## adding the path of our ffmpeg framework because ffmpeg is required for audio extraction and conversion
-ffmpeg_path = r"D:\Programming\Data Science\Gen AI\Individual_Projects\Job_Matching_and_Candidate_Analysis_System\ffmpeg-7.1-essentials_build\bin"  # Change this to your actual path
+ffmpeg_path = r"ffmpeg-7.1-essentials_build\bin"
 os.environ["PATH"] += os.pathsep + ffmpeg_path
+
 
 import whisper
 from langchain_groq import ChatGroq
@@ -53,7 +54,7 @@ def run():
         extract_audio(temp_vdo,temp_ado)
         
         # Converting audio to text (transcription)
-        result=model.transcribe(r"D:\Programming\Data Science\Gen AI\Individual_Projects\Job_Matching_and_Candidate_Analysis_System\interview_analysis\audio.wav")
+        result=model.transcribe(r"interview_analysis\audio.wav")
         transcription=result["text"]
         
         st.write("Generating Response.......")
