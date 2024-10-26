@@ -6,7 +6,6 @@ ffmpeg_path = r"D:\Programming\Data Science\Gen AI\Individual_Projects\Job_Match
 os.environ["PATH"] += os.pathsep + ffmpeg_path
 
 import whisper
-import ffmpeg
 from langchain_groq import ChatGroq
 from langchain.chains import LLMChain
 from langchain.prompts import PromptTemplate
@@ -43,7 +42,7 @@ def run():
         st.success("Video Uploaded Successfully!")
         file_name=interview.name
         temp_vdo=f"./{file_name}"
-        temp_ado=r"D:\Programming\Data Science\Gen AI\Individual_Projects\Job_Matching_and_Candidate_Analysis_System\interview_analysis\audio.wav"
+        temp_ado=r"interview_analysis\audio.wav"
         
         # Function to save the video file temporarily
         with open(temp_vdo,'wb') as file:

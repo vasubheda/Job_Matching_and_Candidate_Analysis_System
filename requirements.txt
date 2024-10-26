@@ -2,13 +2,8 @@ langchain
 groq
 python-dotenv
 pypdf
-neo4j
 streamlit
 pandas
-scikit-learn
-opencv-python  # For video analysis
-numpy
-tensorflow # If needed for ML tasks
 langchain_groq
 langchain_community
 langchain_huggingface
@@ -17,4 +12,4 @@ docx2txt
 torch
 openai-whisper
 protobuf==3.20.*
-pysqlite3-binary
+moviepy

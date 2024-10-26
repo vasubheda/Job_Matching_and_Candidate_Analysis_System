@@ -42,6 +42,7 @@ Usage Guidelines:
     3. Interview Analysis - Dashboard for interview analysis (Upload interview video for analysis).
 - You can choose either one of them according to your needs.
 - Ideally, there would be no job descriptions uploaded initially. To get the job matching results in user dashboard, you would have to upload job descriptions in recruiter dashboard first.
+- I have provided "Upload samples" folder in the zip file for testing, where you can find samples of interview,job descriptions and resume.
 
 Results :
 - You can see job-matching results in user dashboard and interview analysis results in interview analysis dashboard once executed.

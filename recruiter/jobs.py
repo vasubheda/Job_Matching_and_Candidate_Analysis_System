@@ -25,38 +25,42 @@ def run():
     st.subheader("Here you can upload multiple job descriptions in formats like TEXT or JSON")
     job_descriptions=st.file_uploader("Upload your job description",accept_multiple_files=True,type=['txt','json'])
     if job_descriptions:
-        documents=[]
-        
-        ## This will go through each uploaded file and convert it into text 
-        # after which it will get appended into our documents list.
-        for uploaded_file in job_descriptions:
-            file_name=uploaded_file.name
-            if file_name.endswith('.txt'):
-                temptxt=f"./{file_name}"
-                with open(temptxt,'wb') as file:
-                    file.write(uploaded_file.getvalue())
-                
-                loader=TextLoader(temptxt)
-                docs=loader.load()
-                documents.extend(docs)
+        try:
+            documents=[]
             
-            else:
-                tempjson=f"./{file_name}"
-                with open(tempjson,'wb') as file:
-                    file.write(uploaded_file.getvalue())
+            ## This will go through each uploaded file and convert it into text 
+            # after which it will get appended into our documents list.
+            for uploaded_file in job_descriptions:
+                file_name=uploaded_file.name
+                if file_name.endswith('.txt'):
+                    temptxt=f"./{file_name}"
+                    with open(temptxt,'wb') as file:
+                        file.write(uploaded_file.getvalue())
+                    
+                    loader=TextLoader(temptxt)
+                    docs=loader.load()
+                    documents.extend(docs)
                 
-                loader=JSONLoader(tempjson)
-                docs=loader.load()
-                documents.extend(docs)
-                
-    ## Splitting the documents
-        text_splitter=RecursiveCharacterTextSplitter(chunk_size=2500,chunk_overlap=0)
-        splits=text_splitter.split_documents(documents)
+                else:
+                    tempjson=f"./{file_name}"
+                    with open(tempjson,'wb') as file:
+                        file.write(uploaded_file.getvalue())
+                    
+                    loader=JSONLoader(tempjson)
+                    docs=loader.load()
+                    documents.extend(docs)
+                    
+        ## Splitting the documents
+            text_splitter=RecursiveCharacterTextSplitter(chunk_size=2500,chunk_overlap=0)
+            splits=text_splitter.split_documents(documents)
+            
+        ## Specifying the directory for ChromaDB storage (our persistent vector database)
+            storage_directory='chromadb'
+            
+        ## Creating chromadb vector database
+            vectorstore=Chroma.from_documents(documents=splits,embedding=embeddings,persist_directory=storage_directory)
+            st.success("Documents uploaded and processed successfully!")
+            return vectorstore
         
-    ## Specifying the directory for ChromaDB storage (our persistent vector database)
-        storage_directory='chromadb'
-        
-    ## Creating chromadb vector database
-        vectorstore=Chroma.from_documents(documents=splits,embedding=embeddings,persist_directory=storage_directory)
-        st.success("Documents uploaded and processed successfully!")
-        return vectorstore
+        except Exception as e:
+            print("An error Occured",e)
